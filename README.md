@@ -4,6 +4,6 @@ This tutorial describes the creation of Databricks workspaces within the Azure C
 
 Tasks: 
 
-* TODO: create a multi-workspace platform
+* [Done]  create a multi-workspace platform (with adequate tags)
 
 * TODO: provision Unity Catalog on top of the platform, following https://registry.terraform.io/providers/databricks/databricks/latest/docs/guides/unity-catalog-azure
