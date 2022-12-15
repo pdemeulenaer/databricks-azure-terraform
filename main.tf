@@ -63,54 +63,54 @@ output "databricks_host_dev" {
   value = "https://${azurerm_databricks_workspace.dev.workspace_url}/"
 }
 
-# 2. STAGING WORKSPACE CREATION
+# # 2. STAGING WORKSPACE CREATION
 
-resource "azurerm_resource_group" "staging" {
-  name     = "${local.prefix}-staging-rg"
-  location = var.region
-  tags = merge(local.tags, {
-    Environment = "staging"
-  })
-}
+# resource "azurerm_resource_group" "staging" {
+#   name     = "${local.prefix}-staging-rg"
+#   location = var.region
+#   tags = merge(local.tags, {
+#     Environment = "staging"
+#   })
+# }
 
-resource "azurerm_databricks_workspace" "staging" {
-  name                        = "${local.prefix}-staging-workspace"
-  resource_group_name         = azurerm_resource_group.staging.name
-  location                    = azurerm_resource_group.staging.location
-  sku                         = "premium"
-  managed_resource_group_name = "${local.prefix}-staging-workspace-rg"
-  # tags                        = local.tags
-  tags = merge(local.tags, {
-    environment = "staging"
-  })
-}
+# resource "azurerm_databricks_workspace" "staging" {
+#   name                        = "${local.prefix}-staging-workspace"
+#   resource_group_name         = azurerm_resource_group.staging.name
+#   location                    = azurerm_resource_group.staging.location
+#   sku                         = "premium"
+#   managed_resource_group_name = "${local.prefix}-staging-workspace-rg"
+#   # tags                        = local.tags
+#   tags = merge(local.tags, {
+#     environment = "staging"
+#   })
+# }
 
-output "databricks_host_staging" {
-  value = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
-}
+# output "databricks_host_staging" {
+#   value = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
+# }
 
-# 3. PROD WORKSPACE CREATION
+# # 3. PROD WORKSPACE CREATION
 
-resource "azurerm_resource_group" "prod" {
-  name     = "${local.prefix}-prod-rg"
-  location = var.region
-  tags = merge(local.tags, {
-    Environment = "prod"
-  })
-}
+# resource "azurerm_resource_group" "prod" {
+#   name     = "${local.prefix}-prod-rg"
+#   location = var.region
+#   tags = merge(local.tags, {
+#     Environment = "prod"
+#   })
+# }
 
-resource "azurerm_databricks_workspace" "prod" {
-  name                        = "${local.prefix}-prod-workspace"
-  resource_group_name         = azurerm_resource_group.prod.name
-  location                    = azurerm_resource_group.prod.location
-  sku                         = "premium"
-  managed_resource_group_name = "${local.prefix}-prod-workspace-rg"
-  # tags                        = local.tags
-  tags = merge(local.tags, {
-    environment = "prod"
-  })
-}
+# resource "azurerm_databricks_workspace" "prod" {
+#   name                        = "${local.prefix}-prod-workspace"
+#   resource_group_name         = azurerm_resource_group.prod.name
+#   location                    = azurerm_resource_group.prod.location
+#   sku                         = "premium"
+#   managed_resource_group_name = "${local.prefix}-prod-workspace-rg"
+#   # tags                        = local.tags
+#   tags = merge(local.tags, {
+#     environment = "prod"
+#   })
+# }
 
-output "databricks_host_prod" {
-  value = "https://${azurerm_databricks_workspace.prod.workspace_url}/"
-}
+# output "databricks_host_prod" {
+#   value = "https://${azurerm_databricks_workspace.prod.workspace_url}/"
+# }
