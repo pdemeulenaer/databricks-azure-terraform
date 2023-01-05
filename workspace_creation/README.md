@@ -1,4 +1,4 @@
-# databricks-azure-terraform
+# workspace creation
 
 This tutorial describes the creation of Databricks workspaces within the Azure Cloud, following the Databricks documentation https://registry.terraform.io/providers/databricks/databricks/latest/docs/guides/azure-workspace
 
