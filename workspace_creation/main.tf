@@ -30,6 +30,7 @@ data "external" "me" {
 locals {
   # prefix = "databricksdemo${random_string.naming.result}"
   prefix = "databricks-tf-${random_string.naming.result}"
+  # prefix = "db-tf"
   tags = {
     # Environment = "Demo"
     Owner       = lookup(data.external.me.result, "name")
@@ -48,7 +49,7 @@ resource "azurerm_resource_group" "dev" {
 }
 
 resource "azurerm_databricks_workspace" "dev" {
-  name                        = "${local.prefix}-dev-workspace"
+  name                        = "${local.prefix}-dev-ws"
   resource_group_name         = azurerm_resource_group.dev.name
   location                    = azurerm_resource_group.dev.location
   sku                         = "premium"
