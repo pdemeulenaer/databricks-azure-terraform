@@ -1,8 +1,8 @@
 terraform {
 	backend "remote" {
-		organization = "example-org-d50e3c" # org name from step 2.
+		organization = "example-org-d50e3c" # org name in Terraform Cloud
 		workspaces {
-			name = "databricks-azure-terraform" # name for your app's state.
+			name = "databricks-azure-terraform" # name of the workspace containing the state file
 		}
 	}    
     required_providers {

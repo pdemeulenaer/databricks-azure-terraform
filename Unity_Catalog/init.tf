@@ -1,4 +1,10 @@
 terraform {
+	backend "remote" {
+		organization = "example-org-d50e3c" # org name in Terraform Cloud
+		workspaces {
+			name = "databricks-azure-uc" # name of the workspace containing the state file
+		}
+	}   
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
