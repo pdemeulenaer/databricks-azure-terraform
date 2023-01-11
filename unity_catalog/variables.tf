@@ -27,3 +27,5 @@ data "azurerm_databricks_workspace" "this" {
 
 # added for the service principal tf file
 variable "databricks_account_id" {}
+
+variable "application_id" {} 
