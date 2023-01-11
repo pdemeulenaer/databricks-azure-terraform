@@ -10,10 +10,10 @@ resource "databricks_catalog" "sandbox" {
 
 resource "databricks_grants" "sandbox" {
   catalog = databricks_catalog.sandbox.name
-  grant {
-    principal  = "Data Scientists"
-    privileges = ["USAGE", "CREATE"]
-  }
+  # grant {
+  #   principal  = "Data Scientists"
+  #   privileges = ["USAGE", "CREATE"]
+  # }
   grant {
     principal  = "Data Engineers"
     privileges = ["USAGE"]
