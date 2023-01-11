@@ -1,4 +1,4 @@
-
+# Common part
 
 resource "random_string" "naming" {
   special = false
@@ -24,6 +24,7 @@ locals {
 }
 
 # 1. DEV WORKSPACE CREATION
+# =========================
 
 resource "azurerm_resource_group" "dev" {
   name     = "${local.prefix}-dev-rg"
@@ -49,7 +50,9 @@ output "databricks_host_dev" {
   value = "https://${azurerm_databricks_workspace.dev.workspace_url}/"
 }
 
+
 # 2. STAGING WORKSPACE CREATION
+# =============================
 
 resource "azurerm_resource_group" "staging" {
   name     = "${local.prefix}-staging-rg"
@@ -75,7 +78,9 @@ output "databricks_host_staging" {
   value = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
 }
 
+
 # 3. PROD WORKSPACE CREATION
+# ==========================
 
 resource "azurerm_resource_group" "prod" {
   name     = "${local.prefix}-prod-rg"
