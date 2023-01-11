@@ -15,10 +15,11 @@ resource "databricks_service_principal" "sp" {
   provider       = databricks.azure_account
   application_id = var.application_id 
   display_name = "Data Engineers"
+  workspace_access = true
 }
 
-resource "databricks_mws_permission_assignment" "add_user_spn" {
-  workspace_id = local.databricks_workspace_id #databricks_mws_workspaces.this.workspace_id
-  principal_id = databricks_service_principal.sp.id
-  permissions  = ["USER"]
-}
+# resource "databricks_mws_permission_assignment" "add_user_spn" {
+#   workspace_id = local.databricks_workspace_id #databricks_mws_workspaces.this.workspace_id
+#   principal_id = databricks_service_principal.sp.id
+#   permissions  = ["USER"]
+# }
