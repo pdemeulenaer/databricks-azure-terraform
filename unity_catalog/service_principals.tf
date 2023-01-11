@@ -12,6 +12,8 @@ provider "databricks" {
 # }
 
 resource "databricks_service_principal" "sp" {
+  provider       = databricks.azure_account
+  application_id = var.application_id 
   display_name = "Data Engineers"
 }
 
