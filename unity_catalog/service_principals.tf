@@ -13,6 +13,7 @@ resource "databricks_service_principal" "sp" {
   workspace_access = true # meaningful or not?
 }
 
+# NOT WORKING
 resource "databricks_permission_assignment" "add_admin_spn" {
   principal_id = databricks_service_principal.sp.id
   permissions  = ["ADMIN"]

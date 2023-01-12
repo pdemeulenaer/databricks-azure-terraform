@@ -8,17 +8,18 @@ resource "databricks_catalog" "sandbox" {
   depends_on = [databricks_metastore_assignment.this]
 }
 
-resource "databricks_grants" "sandbox" {
-  catalog = databricks_catalog.sandbox.name
-  # grant {
-  #   principal  = "Data Scientists"
-  #   privileges = ["USAGE", "CREATE"]
-  # }
-  grant {
-    principal  = "Data Engineers"
-    privileges = ["USAGE"]
-  }
-}
+# NOT WORKING UNLESS PRINCIPAL CREATED EARLIER
+# resource "databricks_grants" "sandbox" {
+#   catalog = databricks_catalog.sandbox.name
+#   # grant {
+#   #   principal  = "Data Scientists"
+#   #   privileges = ["USAGE", "CREATE"]
+#   # }
+#   grant {
+#     principal  = "Data Engineers"
+#     privileges = ["USAGE"]
+#   }
+# }
 
 resource "databricks_schema" "things" {
   catalog_name = databricks_catalog.sandbox.id
@@ -29,10 +30,11 @@ resource "databricks_schema" "things" {
   }
 }
 
-resource "databricks_grants" "things" {
-  schema = databricks_schema.things.id
-  grant {
-    principal  = "Data Engineers"
-    privileges = ["USAGE"]
-  }
-}
+# NOT WORKING UNLESS PRINCIPAL CREATED EARLIER
+# resource "databricks_grants" "things" {
+#   schema = databricks_schema.things.id
+#   grant {
+#     principal  = "Data Engineers"
+#     privileges = ["USAGE"]
+#   }
+# }

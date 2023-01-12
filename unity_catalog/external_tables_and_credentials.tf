@@ -45,13 +45,14 @@ resource "databricks_storage_credential" "external" {
   ]
 }
 
-resource "databricks_grants" "external_creds" {
-  storage_credential = databricks_storage_credential.external.id
-  grant {
-    principal  = "Data Engineers"
-    privileges = ["CREATE_TABLE"]
-  }
-}
+# NOT WORKING UNLESS PRINCIPAL CREATED EARLIER
+# resource "databricks_grants" "external_creds" {
+#   storage_credential = databricks_storage_credential.external.id
+#   grant {
+#     principal  = "Data Engineers"
+#     privileges = ["CREATE_TABLE"]
+#   }
+# }
 
 resource "databricks_external_location" "some" {
   name = "external"
@@ -66,10 +67,11 @@ resource "databricks_external_location" "some" {
   ]
 }
 
-resource "databricks_grants" "some" {
-  external_location = databricks_external_location.some.id
-  grant {
-    principal  = "Data Engineers"
-    privileges = ["CREATE_TABLE", "READ_FILES"]
-  }
-}
+# NOT WORKING UNLESS PRINCIPAL CREATED EARLIER
+# resource "databricks_grants" "some" {
+#   external_location = databricks_external_location.some.id
+#   grant {
+#     principal  = "Data Engineers"
+#     privileges = ["CREATE_TABLE", "READ_FILES"]
+#   }
+# }
