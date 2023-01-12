@@ -12,7 +12,7 @@ terraform {
     }
     databricks = {
       source = "databricks/databricks"
-      version = "1.7.0"
+      version = "1.8.0"
     }
   }
 }
@@ -25,6 +25,8 @@ provider "azurerm" {
 provider "databricks" {
   host = local.databricks_workspace_host
 }
+
+# SEE ALSO IN https://registry.terraform.io/providers/databricks/databricks/latest/docs#special-configurations-for-azure
 
 # // Initialize provider in "MWS" mode to provision the new workspace.
 # // alias = "mws" instructs Databricks to connect to https://accounts.cloud.databricks.com, to create

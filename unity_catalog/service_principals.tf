@@ -14,7 +14,7 @@ resource "databricks_service_principal" "sp" {
 }
 
 # NOT WORKING
-resource "databricks_permission_assignment" "add_admin_spn" {
-  principal_id = databricks_service_principal.sp.id
-  permissions  = ["ADMIN"]
-}
+# resource "databricks_permission_assignment" "add_admin_spn" {
+#   principal_id = databricks_service_principal.sp.id
+#   permissions  = ["ADMIN"]
+# }
