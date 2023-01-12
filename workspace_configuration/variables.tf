@@ -10,7 +10,7 @@ locals {
   tenant_id                 = data.azurerm_client_config.current.tenant_id
   databricks_workspace_host = data.azurerm_databricks_workspace.this.workspace_url
   databricks_workspace_id   = data.azurerm_databricks_workspace.this.workspace_id
-  prefix                    = "${format("%.12s", replace(replace(replace(lower(data.azurerm_resource_group.this.name), "rg", ""), "-", ""),"databricks","") )}"
+  prefix                    = format("%.12s", replace(replace(replace(lower(data.azurerm_resource_group.this.name), "rg", ""), "-", ""), "databricks", ""))
 }
 
 data "azurerm_resource_group" "this" {

@@ -1,31 +1,31 @@
 terraform {
-    backend "remote" {
-    	organization = "example-org-d50e3c" # org name in Terraform Cloud
-    	workspaces {
-    		name = "databricks-azure-ws-configuration" # name of the workspace containing the state file
-    	}
-    }      
-    required_providers {
-        azurerm = {
-            source = "hashicorp/azurerm"
-            version = "3.35.0"
-        }        
-        databricks = {
-            source = "databricks/databricks"
-            version = "1.8.0"
-        }
+  backend "remote" {
+    organization = "example-org-d50e3c" # org name in Terraform Cloud
+    workspaces {
+      name = "databricks-azure-ws-configuration" # name of the workspace containing the state file
     }
+  }
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "3.35.0"
+    }
+    databricks = {
+      source  = "databricks/databricks"
+      version = "1.8.0"
+    }
+  }
 }
 
 provider "azurerm" {
-    subscription_id = local.subscription_id
-    features {}
+  subscription_id = local.subscription_id
+  features {}
 }
 
 # SEE https://registry.terraform.io/providers/databricks/databricks/latest/docs#special-configurations-for-azure
 provider "databricks" {
-    # host = azurerm_databricks_workspace.this.workspace_url # or data. ...
-    host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
+  # host = azurerm_databricks_workspace.this.workspace_url # or data. ...
+  host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
 }
 
 # where the "azurerm_databricks_workspace" could be like this (taken from UC init file):
@@ -45,6 +45,6 @@ provider "databricks" {
 data "databricks_current_user" "me" {}
 data "databricks_spark_version" "latest" {}
 data "databricks_node_type" "smallest" {
-#   local_disk = true # FAILING ! USE DIFFERENT NODE TYPE
-    category = "General Purpose"
+  #   local_disk = true # FAILING ! USE DIFFERENT NODE TYPE
+  category = "General Purpose"
 }
