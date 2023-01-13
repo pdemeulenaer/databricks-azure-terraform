@@ -1,16 +1,20 @@
 # databricks-azure-terraform
 
+## Introduction
+
 This tutorial describes the provisioning of
 
 * Databricks workspaces within the Azure Cloud, following the Databricks documentation https://registry.terraform.io/providers/databricks/databricks/latest/docs/guides/azure-workspace
 
 * Unity Catalog on top of the platform, following https://registry.terraform.io/providers/databricks/databricks/latest/docs/guides/unity-catalog-azure
 
-## Structure
+## Repo structure
 
 To keep the creation of both logical entities separated, the configuration files supporting them are grouped into separated folders:
 
 * workspace_creation
+
+* workspace_configuration
 
 * unity_catalog
 
