@@ -10,3 +10,11 @@ resource "databricks_instance_pool" "smallest_nodes" {
 
   idle_instance_autotermination_minutes = 20
 }
+
+# GLOBAL INIT SCRIPTS
+resource "databricks_global_init_script" "init1" {
+  source = "global_init_scripts/init.sh"
+  name   = "test global init script"
+}
+
+# CLUSTER CREATIONS
