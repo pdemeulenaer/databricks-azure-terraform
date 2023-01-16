@@ -7,6 +7,7 @@ resource "azurerm_databricks_access_connector" "unity" {
   }
 }
 
+# Azure Storage Account
 resource "azurerm_storage_account" "unity_catalog" {
   name                     = "${local.prefix}storage"
   resource_group_name      = data.azurerm_resource_group.this.name
@@ -17,6 +18,7 @@ resource "azurerm_storage_account" "unity_catalog" {
   is_hns_enabled           = true
 }
 
+# Container within a Storage Account
 resource "azurerm_storage_container" "unity_catalog" {
   name                  = "${local.prefix}-container"
   storage_account_name  = azurerm_storage_account.unity_catalog.name
