@@ -24,7 +24,7 @@ resource "databricks_metastore_data_access" "first" {
 # }
 
 # Enabling the UC on ALL workspaces specified
-resource "databricks_metastore_assignment" "default_metastore" {
+resource "databricks_metastore_assignment" "this" {
   for_each             = toset(var.databricks_workspace_ids)
   workspace_id         = each.key
   metastore_id         = databricks_metastore.this.id
