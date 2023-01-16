@@ -16,8 +16,17 @@ resource "databricks_metastore_data_access" "first" {
   is_default = true
 }
 
-resource "databricks_metastore_assignment" "this" {
-  workspace_id         = local.databricks_workspace_id
+# Enabling the UC on the (one) workspace specified
+# resource "databricks_metastore_assignment" "this" {
+#   workspace_id         = local.databricks_workspace_id
+#   metastore_id         = databricks_metastore.this.id
+#   default_catalog_name = "hive_metastore"
+# }
+
+# Enabling the UC on ALL workspaces specified
+resource "databricks_metastore_assignment" "default_metastore" {
+  for_each             = toset(var.databricks_workspace_ids)
+  workspace_id         = each.key
   metastore_id         = databricks_metastore.this.id
   default_catalog_name = "hive_metastore"
 }
