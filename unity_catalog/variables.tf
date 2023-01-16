@@ -29,3 +29,13 @@ data "azurerm_databricks_workspace" "this" {
 variable "databricks_account_id" {}
 
 variable "application_id" {} 
+
+# Added for the list of workspaces to connect to the Unity Catalog
+variable "databricks_workspace_ids" {
+  description = <<EOT
+  List of Databricks workspace IDs to be enabled with Unity Catalog.
+  Enter with square brackets and double quotes
+  e.g. ["111111111", "222222222"]
+  EOT
+  type        = list(string)
+}
