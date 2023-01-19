@@ -20,3 +20,12 @@ resource "databricks_global_init_script" "init1" {
 }
 
 # CLUSTER CREATIONS
+
+# GITHUB INTEGRATION
+# https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/git_credential
+
+resource "databricks_git_credential" "ado" {
+  git_username          = "pdemeulenaer"
+  git_provider          = "gitHub"
+  personal_access_token = var.github_token
+}

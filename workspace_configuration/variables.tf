@@ -24,3 +24,7 @@ data "azurerm_databricks_workspace" "this" {
   name                = local.databricks_workspace_name
   resource_group_name = local.resource_group
 }
+
+variable "github_token" {
+  description = "personal access token from GitHub"
+}
