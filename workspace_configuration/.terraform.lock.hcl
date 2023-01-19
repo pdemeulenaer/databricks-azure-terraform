@@ -20,7 +20,8 @@ provider "registry.terraform.io/databricks/databricks" {
 }
 
 provider "registry.terraform.io/hashicorp/azurerm" {
-  version = "3.35.0"
+  version     = "3.35.0"
+  constraints = "3.35.0"
   hashes = [
     "h1:UgjTFMinFpuXO3brreeB8B0ZucSaPyeHdPAgUqHTANs=",
     "zh:17a0322fc329b3d7cedf76e3cbaea3ffcd11fe7f806608cece646844c9645be1",
