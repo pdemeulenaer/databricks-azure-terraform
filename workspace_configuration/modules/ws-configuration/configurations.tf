@@ -1,3 +1,22 @@
+# Providers
+
+provider "databricks" {}
+
+provider "databricks" {
+  alias = "dev"
+}
+
+provider "databricks" {
+  alias = "staging"
+}
+
+provider "databricks" {
+  alias = "prod"
+}
+
+# DEV PLATFORM
+
+
 # POOL CREATION
 # resource "databricks_instance_pool" "smallest_nodes" {
 #   instance_pool_name = "Smallest Nodes (${data.databricks_current_user.me.alphanumeric})"
@@ -21,11 +40,11 @@
 
 # CLUSTER CREATIONS
 
-
 # GITHUB INTEGRATION
 # https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/git_credential
 
 resource "databricks_git_credential" "github" {
+  provider = databricks.dev
   git_username          = "pdemeulenaer"
   git_provider          = "gitHub"
   personal_access_token = var.github_token
@@ -33,5 +52,6 @@ resource "databricks_git_credential" "github" {
 
 # Cloning a repo
 resource "databricks_repo" "nutter_in_home" {
+  provider = databricks.dev
   url = var.git_repo
 }

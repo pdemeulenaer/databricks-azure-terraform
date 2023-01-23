@@ -69,7 +69,10 @@ data "databricks_node_type" "smallest" {
 module "devws" {
   source         = "./modules/ws-configuration"
   providers = {
-    databricks = databricks.dev
+    databricks = databricks
+    databricks.dev     = databricks.dev
+    databricks.staging = databricks.staging
+    databricks.prod    = databricks.prod        
   }  
   github_token   = var.github_token
   git_repo       = var.git_repo
