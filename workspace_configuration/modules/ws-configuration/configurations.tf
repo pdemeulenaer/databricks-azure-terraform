@@ -31,7 +31,7 @@ resource "databricks_instance_pool" "pool" {
 # GLOBAL INIT SCRIPTS
 resource "databricks_global_init_script" "init1" {
   provider = databricks.dev  
-  source = "../../global_init_scripts/init.sh"
+  source = "${path.module}/../../global_init_scripts/init.sh"
   name   = "test global init script"
   enabled = true # by default false
   position = 0 # position of Global init script (0=first) if multiple
