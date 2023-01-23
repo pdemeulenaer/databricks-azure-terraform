@@ -32,5 +32,5 @@ resource "databricks_git_credential" "github" {
 
 # Cloning a repo
 resource "databricks_repo" "nutter_in_home" {
-  url = "https://github.com/pdemeulenaer/databricks-poc-template.git"
+  url = var.git_repo
 }
