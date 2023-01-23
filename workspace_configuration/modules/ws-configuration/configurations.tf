@@ -15,7 +15,8 @@ terraform {
 
 
 # POOL CREATION
-resource "databricks_instance_pool" "smallest_nodes" {
+resource "databricks_instance_pool" "pool" {
+  provider = databricks.dev
   instance_pool_name = "Smallest Nodes (${var.current_user_alphanumeric})" # "Smallest Nodes (${data.databricks_current_user.me.alphanumeric})"
   min_idle_instances = 0
   max_capacity       = 10
@@ -27,13 +28,14 @@ resource "databricks_instance_pool" "smallest_nodes" {
   idle_instance_autotermination_minutes = 20
 }
 
-# # GLOBAL INIT SCRIPTS
-# resource "databricks_global_init_script" "init1" {
-#   source = "global_init_scripts/init.sh"
-#   name   = "test global init script"
-#   enabled = true # by default false
-#   position = 0 # position of Global init script (0=first) if multiple
-# }
+# GLOBAL INIT SCRIPTS
+resource "databricks_global_init_script" "init1" {
+  provider = databricks.dev  
+  source = "../../global_init_scripts/init.sh"
+  name   = "test global init script"
+  enabled = true # by default false
+  position = 0 # position of Global init script (0=first) if multiple
+}
 
 # CLUSTER CREATIONS
 
