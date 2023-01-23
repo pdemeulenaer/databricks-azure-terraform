@@ -68,9 +68,9 @@ data "databricks_node_type" "smallest" {
 
 module "wsconf" {
   source         = "./modules/ws-configuration"
+  github_token   = var.github_token
+  git_repo       = var.git_repo  
   providers = {
     databricks.dev     = databricks.dev      
   }  
-  github_token   = var.github_token
-  git_repo       = var.git_repo
 }
