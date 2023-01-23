@@ -1,14 +1,28 @@
 # Providers
 
-provider "databricks" {
-  source  = "databricks/databricks"
-  configuration_aliases = [
-     databricks,
-     databricks.dev,
-     databricks.prod,
-     databricks.staging,
-   ]  
+terraform {
+  required_providers {
+    databricks = {
+      source  = "databricks/databricks"
+      version = ">= 1.9.0"
+      configuration_aliases = [
+        databricks.dev,
+        databricks.prod,
+        databricks.staging,
+      ]  
+    }
+  }
 }
+
+# provider "databricks" {
+#   source  = "databricks/databricks"
+#   configuration_aliases = [
+#      databricks,
+#      databricks.dev,
+#      databricks.prod,
+#      databricks.staging,
+#    ]  
+# }
 
 # provider "databricks" {
 #   alias = "dev"

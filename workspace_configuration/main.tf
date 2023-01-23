@@ -66,10 +66,9 @@ data "databricks_node_type" "smallest" {
   category = "General Purpose"
 }
 
-module "devws" {
+module "wsconf" {
   source         = "./modules/ws-configuration"
   providers = {
-    databricks         = databricks
     databricks.dev     = databricks.dev
     databricks.staging = databricks.staging
     databricks.prod    = databricks.prod        
