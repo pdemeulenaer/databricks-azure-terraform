@@ -10,6 +10,8 @@ This tutorial describes the provisioning of
 
 ## Repo structure
 
+#TODO: add repo tree
+
 To keep the creation of both logical entities separated, the configuration files supporting them are grouped into separated folders:
 
 * workspace_creation

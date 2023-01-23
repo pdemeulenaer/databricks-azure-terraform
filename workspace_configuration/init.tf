@@ -22,10 +22,27 @@ provider "azurerm" {
   features {}
 }
 
+# Default Databricks provider
+provider "databricks" {
+}
+
 # SEE https://registry.terraform.io/providers/databricks/databricks/latest/docs#special-configurations-for-azure
 provider "databricks" {
+  alias = "dev"
   # host = azurerm_databricks_workspace.this.workspace_url # or data. ...
   host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
+}
+
+provider "databricks" {
+  alias = "staging"
+  # host = azurerm_databricks_workspace.this.workspace_url # or data. ...
+  # host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
+}
+
+provider "databricks" {
+  alias = "prod"
+  # host = azurerm_databricks_workspace.this.workspace_url # or data. ...
+  # host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
 }
 
 # where the "azurerm_databricks_workspace" could be like this (taken from UC init file):
@@ -47,4 +64,13 @@ data "databricks_spark_version" "latest" {}
 data "databricks_node_type" "smallest" {
   #   local_disk = true # FAILING ! USE DIFFERENT NODE TYPE
   category = "General Purpose"
+}
+
+module "devws" {
+  source         = "./modules/ws-configuration"
+  providers = {
+    databricks = databricks.dev
+  }  
+  github_token   = var.github_token
+  git_repo       = var.git_repo
 }
