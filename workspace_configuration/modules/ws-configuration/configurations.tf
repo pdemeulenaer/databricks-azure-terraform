@@ -5,11 +5,7 @@ terraform {
     databricks = {
       source  = "databricks/databricks"
       version = ">= 1.9.0"
-      configuration_aliases = [
-        databricks.dev,
-        databricks.prod,
-        databricks.staging,
-      ]  
+      configuration_aliases = [ databricks.dev ]  
     }
   }
 }
