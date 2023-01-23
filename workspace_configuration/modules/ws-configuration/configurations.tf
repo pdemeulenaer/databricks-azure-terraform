@@ -1,18 +1,26 @@
 # Providers
 
-provider "databricks" {}
-
 provider "databricks" {
-  alias = "dev"
+  source  = "databricks/databricks"
+  configuration_aliases = [
+     databricks,
+     databricks.dev,
+     databricks.prod,
+     databricks.staging,
+   ]  
 }
 
-provider "databricks" {
-  alias = "staging"
-}
+# provider "databricks" {
+#   alias = "dev"
+# }
 
-provider "databricks" {
-  alias = "prod"
-}
+# provider "databricks" {
+#   alias = "staging"
+# }
+
+# provider "databricks" {
+#   alias = "prod"
+# }
 
 # DEV PLATFORM
 
