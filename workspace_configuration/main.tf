@@ -69,7 +69,7 @@ data "databricks_node_type" "smallest" {
 module "devws" {
   source         = "./modules/ws-configuration"
   providers = {
-    databricks = databricks
+    databricks         = databricks
     databricks.dev     = databricks.dev
     databricks.staging = databricks.staging
     databricks.prod    = databricks.prod        
