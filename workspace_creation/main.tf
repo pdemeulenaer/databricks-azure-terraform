@@ -51,6 +51,11 @@ output "databricks_host_dev" {
   value = "https://${azurerm_databricks_workspace.dev.workspace_url}/"
 }
 
+resource "local_file" "dev_ws_url" {
+    content  = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
+    filename = "dev_ws.txt"
+}
+
 
 # 2. STAGING WORKSPACE CREATION
 # =============================
