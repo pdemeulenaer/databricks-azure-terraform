@@ -5,7 +5,7 @@ terraform {
     databricks = {
       source  = "databricks/databricks"
       version = ">= 1.9.0"
-      configuration_aliases = [ databricks.dev ]  
+      configuration_aliases = [ databricks.dev, databricks.staging ]  
     }
   }
 }
@@ -16,7 +16,7 @@ terraform {
 # ============
 
 # POOL CREATION
-resource "databricks_instance_pool" "pool" {
+resource "databricks_instance_pool" "dev_pool" {
   provider = databricks.dev
   instance_pool_name = "Smallest Nodes (${var.current_user_alphanumeric})" # "Smallest Nodes (${data.databricks_current_user.me.alphanumeric})"
   min_idle_instances = 0
@@ -61,19 +61,19 @@ resource "databricks_repo" "nutter_in_home" {
 # # STAGING PLATFORM
 # # ================
 
-# # POOL CREATION
-# resource "databricks_instance_pool" "pool" {
-#   provider = databricks.staging
-#   instance_pool_name = "Smallest Nodes (${var.current_user_alphanumeric})" # "Smallest Nodes (${data.databricks_current_user.me.alphanumeric})"
-#   min_idle_instances = 0
-#   max_capacity       = 10
-#   node_type_id       = var.node_type_id # data.databricks_node_type.smallest.id
-#   preloaded_spark_versions = [
-#     var.spark_version_id # data.databricks_spark_version.latest.id
-#   ]
+# POOL CREATION
+resource "databricks_instance_pool" "staging_pool" {
+  provider = databricks.staging
+  instance_pool_name = "Smallest Nodes (${var.current_user_alphanumeric})" # "Smallest Nodes (${data.databricks_current_user.me.alphanumeric})"
+  min_idle_instances = 0
+  max_capacity       = 10
+  node_type_id       = var.node_type_id # data.databricks_node_type.smallest.id
+  preloaded_spark_versions = [
+    var.spark_version_id # data.databricks_spark_version.latest.id
+  ]
 
-#   idle_instance_autotermination_minutes = 20
-# }
+  idle_instance_autotermination_minutes = 20
+}
 
 # # GLOBAL INIT SCRIPTS
 # resource "databricks_global_init_script" "init1" {
