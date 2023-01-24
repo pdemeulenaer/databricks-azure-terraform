@@ -28,16 +28,16 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {
 }
 
-data "external" "me" {
-  program = ["az", "account", "show", "--query", "user"]
-}
+# data "external" "me" {
+#   program = ["az", "account", "show", "--query", "user"]
+# }
 
 locals {
   # prefix = "databricks-tf-${random_string.naming.result}"
   prefix = "testing"
   tags = {
     # Environment = "Demo"
-    Owner       = lookup(data.external.me.result, "name")
+    # Owner       = lookup(data.external.me.result, "name")
     Source      = "terraform"
   }
 }
