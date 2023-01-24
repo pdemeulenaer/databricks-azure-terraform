@@ -78,10 +78,10 @@ output "databricks_host_staging" {
   value = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
 }
 
-resource "local_file" "staging_url" {
-    content  = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
-    filename = "staging_ws.txt"
-}
+# resource "local_file" "staging_url" {
+#     content  = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
+#     filename = "staging_ws.txt"
+# }
 
 
 # 3. PROD WORKSPACE CREATION
