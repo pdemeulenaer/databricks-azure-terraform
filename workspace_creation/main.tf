@@ -52,8 +52,8 @@ output "databricks_host_dev" {
 }
 
 resource "local_file" "dev_ws_url" {
-    content  = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
-    filename = "dev_ws.txt"
+    content  = "dev_url=\"https://${azurerm_databricks_workspace.dev.workspace_url}/\""
+    filename = "dev_ws.tfvars"
 }
 
 
@@ -84,10 +84,10 @@ output "databricks_host_staging" {
   value = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
 }
 
-# resource "local_file" "staging_url" {
-#     content  = "https://${azurerm_databricks_workspace.staging.workspace_url}/"
-#     filename = "staging_ws.txt"
-# }
+resource "local_file" "staging_ws_url" {
+    content  = "staging_url=\"https://${azurerm_databricks_workspace.staging.workspace_url}/\""
+    filename = "staging_ws.tfvars"
+}
 
 
 # 3. PROD WORKSPACE CREATION
@@ -115,4 +115,9 @@ resource "azurerm_databricks_workspace" "prod" {
 
 output "databricks_host_prod" {
   value = "https://${azurerm_databricks_workspace.prod.workspace_url}/"
+}
+
+resource "local_file" "prod_ws_url" {
+    content  = "prod_url=\"https://${azurerm_databricks_workspace.prod.workspace_url}/\""
+    filename = "prod_ws.tfvars"
 }
