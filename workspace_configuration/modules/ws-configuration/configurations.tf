@@ -30,7 +30,7 @@ resource "databricks_instance_pool" "dev_pool" {
 }
 
 # GLOBAL INIT SCRIPTS
-resource "databricks_global_init_script" "init1" {
+resource "databricks_global_init_script" "dev_init1" {
   provider = databricks.dev  
   source = "${path.module}/../../global_init_scripts/init.sh"
   name   = "test global init script"
@@ -43,7 +43,7 @@ resource "databricks_global_init_script" "init1" {
 # GITHUB INTEGRATION
 # https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/git_credential
 
-resource "databricks_git_credential" "github" {
+resource "databricks_git_credential" "dev_github" {
   provider = databricks.dev
   git_username          = "pdemeulenaer"
   git_provider          = "gitHub"
@@ -51,7 +51,7 @@ resource "databricks_git_credential" "github" {
 }
 
 # Cloning a repo
-resource "databricks_repo" "nutter_in_home" {
+resource "databricks_repo" "dev_repo" {
   provider = databricks.dev
   url = var.git_repo
 }
@@ -75,29 +75,29 @@ resource "databricks_instance_pool" "staging_pool" {
   idle_instance_autotermination_minutes = 20
 }
 
-# # GLOBAL INIT SCRIPTS
-# resource "databricks_global_init_script" "init1" {
-#   provider = databricks.staging  
-#   source = "${path.module}/../../global_init_scripts/init.sh"
-#   name   = "test global init script"
-#   enabled = true # by default false
-#   position = 0 # position of Global init script (0=first) if multiple
-# }
+# GLOBAL INIT SCRIPTS
+resource "databricks_global_init_script" "staging_init1" {
+  provider = databricks.staging  
+  source = "${path.module}/../../global_init_scripts/init.sh"
+  name   = "test global init script"
+  enabled = true # by default false
+  position = 0 # position of Global init script (0=first) if multiple
+}
 
-# # CLUSTER CREATIONS
+# CLUSTER CREATIONS
 
-# # GITHUB INTEGRATION
-# # https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/git_credential
+# GITHUB INTEGRATION
+# https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/git_credential
 
-# resource "databricks_git_credential" "github" {
-#   provider = databricks.staging
-#   git_username          = "pdemeulenaer"
-#   git_provider          = "gitHub"
-#   personal_access_token = var.github_token
-# }
+resource "databricks_git_credential" "staging_github" {
+  provider = databricks.staging
+  git_username          = "pdemeulenaer"
+  git_provider          = "gitHub"
+  personal_access_token = var.github_token
+}
 
-# # Cloning a repo
-# resource "databricks_repo" "nutter_in_home" {
-#   provider = databricks.staging
-#   url = var.git_repo
-# }
+# Cloning a repo
+resource "databricks_repo" "staging_repo" {
+  provider = databricks.staging
+  url = var.git_repo
+}
