@@ -77,6 +77,7 @@ module "wsconf" {
   node_type_id              = data.databricks_node_type.smallest.id
   spark_version_id          = data.databricks_spark_version.latest.id
   providers = {
-    databricks.dev     = databricks.dev      
+    databricks.dev     = databricks.dev 
+    databricks.staging = databricks.staging      
   }  
 }
