@@ -8,7 +8,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.35.0"
+      version = "3.40.0"
     }
     databricks = {
       source  = "databricks/databricks"
@@ -30,19 +30,22 @@ provider "databricks" {
 provider "databricks" {
   alias = "dev"
   # host = azurerm_databricks_workspace.this.workspace_url # or data. ...
-  host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
+  # host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
+  host = var.dev_url
 }
 
 provider "databricks" {
   alias = "staging"
   # host = azurerm_databricks_workspace.this.workspace_url # or data. ...
   # host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
+  host = var.staging_url
 }
 
 provider "databricks" {
   alias = "prod"
   # host = azurerm_databricks_workspace.this.workspace_url # or data. ...
   # host = data.azurerm_databricks_workspace.this.workspace_url # taken from variables.tf
+  host = var.prod_url
 }
 
 # where the "azurerm_databricks_workspace" could be like this (taken from UC init file):

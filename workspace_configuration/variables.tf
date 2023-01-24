@@ -25,6 +25,12 @@ data "azurerm_databricks_workspace" "this" {
   resource_group_name = local.resource_group
 }
 
+variable "dev_url" {}
+
+variable "staging_url" {}
+
+variable "prod_url" {}
+
 variable "github_token" {
   description = "personal access token from GitHub"
 }
