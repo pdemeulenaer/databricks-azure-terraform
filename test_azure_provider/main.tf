@@ -28,6 +28,7 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {
 }
 
+# Causing error with Azure 
 # data "external" "me" {
 #   program = ["az", "account", "show", "--query", "user"]
 # }

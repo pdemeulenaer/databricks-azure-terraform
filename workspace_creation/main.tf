@@ -9,16 +9,17 @@ resource "random_string" "naming" {
 data "azurerm_client_config" "current" {
 }
 
-data "external" "me" {
-  program = ["az", "account", "show", "--query", "user"]
-}
+# Causing error with Azure 
+# data "external" "me" {
+#   program = ["az", "account", "show", "--query", "user"]
+# }
 
 locals {
   # prefix = "databricks-tf-${random_string.naming.result}"
   prefix = "db-tf"
   tags = {
     # Environment = "Demo"
-    Owner       = lookup(data.external.me.result, "name")
+    # Owner       = lookup(data.external.me.result, "name")
     Source      = "terraform"
   }
 }
