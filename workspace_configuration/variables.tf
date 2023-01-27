@@ -35,6 +35,10 @@ variable "github_token" {
   description = "personal access token from GitHub"
 }
 
-variable "git_repo" {
-  description = "any git repo needed in the infrastructure"
+variable "git_repo_template" {
+  description = "Git repo for the MLOps template"
+}
+
+variable "git_repo_de" {
+  description = "Git repo for Data Engineering lectures from Databricks Academy"
 }

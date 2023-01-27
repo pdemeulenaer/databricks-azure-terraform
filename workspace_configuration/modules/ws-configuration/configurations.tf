@@ -50,10 +50,16 @@ resource "databricks_git_credential" "dev_github" {
   personal_access_token = var.github_token
 }
 
-# Cloning a repo
+# Cloning the template repo
 resource "databricks_repo" "dev_repo" {
   provider = databricks.dev
-  url = var.git_repo
+  url = var.git_repo_template
+}
+
+# Cloning the data engineering lectures repo
+resource "databricks_repo" "dev_repo" {
+  provider = databricks.dev
+  url = var.git_repo_de
 }
 
 
@@ -99,5 +105,5 @@ resource "databricks_git_credential" "staging_github" {
 # Cloning a repo
 resource "databricks_repo" "staging_repo" {
   provider = databricks.staging
-  url = var.git_repo
+  url = var.git_repo_template
 }
